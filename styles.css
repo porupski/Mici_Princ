@@ -6,40 +6,49 @@ html, body {
     flex-direction: column;
 }
 
-/* Main container that holds both the main content and side menu */
+/* Container holding both main content and side menu */
 #container {
     display: flex;
     flex: 1;
-    transition: margin-right 0.3s ease;
-}
-
-/* Style for the main content area */
-.main-content {
-    flex: 2; /* Two-thirds of the container width */
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 70px); /* Adjust height as needed */
-    overflow: auto; /* Ensure content is scrollable if it overflows */
-    transition: margin-right 0.3s ease; /* Smooth transition when the side menu opens/closes */
+    height: calc(100vh - 70px); /* Adjust height to fit header */
+    overflow: hidden; /* Prevent overflow issues */
 }
 
 /* Style for the side menu */
 .side-menu {
-    flex: 1; /* One-third of the container width */
+    flex: 0 0 25%; /* Default to 25% width */
     background-color: #f4f4f4;
     border-left: 1px solid #ccc;
     height: 100%;
     overflow-y: auto;
     padding: 10px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, width 0.3s ease; /* Smooth transition */
+    box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
-/* Hide side menu when hidden */
+/* Hide side menu and expand main content */
 .side-menu.hidden {
-    transform: translateX(100%);
+    flex: 0 0 0; /* Collapse width to zero */
+    transform: translateX(100%); /* Move menu out of view */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+/* Main content area */
+.main-content {
+    flex: 1; /* Take up remaining space when side menu is visible */
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Full height to fit within container */
+    overflow: auto; /* Ensure content is scrollable if needed */
+    transition: margin-right 0.3s ease; /* Smooth transition when menu toggles */
+}
+
+/* Adjust the main content area when the side menu is hidden */
+.side-menu.hidden ~ .main-content {
+    flex: 1 0 100%; /* Expand to full width */
 }
 
 /* Header and controls positioning */
@@ -54,7 +63,8 @@ header {
 /* Style for controls container */
 #controls-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack button groups vertically */
+    align-items: flex-start; /* Align button groups to the left */
     margin-top: 10px;
     box-sizing: border-box;
 }
@@ -62,7 +72,8 @@ header {
 /* Style for control button groups */
 .controls-group {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* Arrange buttons in a row */
+    justify-content: flex-start; /* Align buttons to the left */
     margin-bottom: 10px;
 }
 

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const debug_print = true; // Set this to false to disable debug prints
+    const debug_print = false; // Set this to false to disable debug prints
 
     const log = (message) => {
         if (debug_print) {
@@ -243,11 +243,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Update buttons including the font size button
     function updateButtons() {
         const isHome = currentBaseFileIndex === -1;
+
+        // Update the state for prev and next buttons
         prevButton.disabled = isHome || (currentBaseFileIndex === 0 && currentSegmentIndex === 0);
         nextButton.disabled = (currentBaseFileIndex === baseFileNames.length - 1 && currentSegmentIndex === audioSegments.length - 1);
+        
+        // Update the state for font size button
+        if (isHome) {
+            fontSizeButton.classList.add('disabled');
+            fontSizeButton.disabled = true; // Optional: add HTML disabled attribute
+        } else {
+            fontSizeButton.classList.remove('disabled');
+            fontSizeButton.disabled = false; // Optional: remove HTML disabled attribute
+        }
     }
+
+// Call this function to set the initial state
+updateButtons();
+
+// Update button state whenever currentBaseFileIndex changes (if applicable)
+function onCurrentBaseFileIndexChange() {
+    updateButtons();
+}
+
+// Example: call this function when currentBaseFileIndex changes
+// onCurrentBaseFileIndexChange(); // Uncomment when index changes in your application
+
     
 
     // Event listener for the "Previous" button
@@ -315,15 +339,17 @@ nextButton.addEventListener('click', () => {
 
     // Toggle side menu visibility
     toggleMenuButton.addEventListener('click', () => {
+        const sideMenuIsHidden = sideMenu.classList.contains('hidden');
         sideMenu.classList.toggle('hidden');
+        document.body.classList.toggle('menu-hidden', !sideMenuIsHidden);
+        document.body.classList.toggle('menu-visible', sideMenuIsHidden);
 
-        // Add or remove class based on the visibility of the side menu
-        if (sideMenu.classList.contains('hidden')) {
-            document.body.classList.remove('menu-visible');
-            document.body.classList.add('menu-hidden');
+        // Adjust main content width based on side menu visibility
+        const mainContent = document.querySelector('.main-content');
+        if (sideMenuIsHidden) {
+            mainContent.style.flex = '1';
         } else {
-            document.body.classList.remove('menu-hidden');
-            document.body.classList.add('menu-visible');
+            mainContent.style.flex = '2';
         }
     });
 
@@ -333,11 +359,11 @@ nextButton.addEventListener('click', () => {
         if (isFontLarge) {
             transcriptDiv.classList.remove('font-small');
             transcriptDiv.classList.add('font-large');
-            fontSizeButton.textContent = 'Manji Tekst'; // Update button text
+            fontSizeButton.textContent = 'Manji font ⇩'; // Update button text
         } else {
             transcriptDiv.classList.remove('font-large');
             transcriptDiv.classList.add('font-small');
-            fontSizeButton.textContent = 'Veći Tekst'; // Update button text
+            fontSizeButton.textContent = 'Veći font ⇧'; // Update button text
         }
     });
 
