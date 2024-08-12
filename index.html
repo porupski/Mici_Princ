@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mići Princ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Main content area -->
+        <div class="main-content">
+            <!-- Header -->
+            <header>
+                <h1>Mići Princ - Audio knjiga</h1>
+            </header>
+
+            <!-- Audio Player -->
+            <audio id="audioPlayer" controls>
+                Your browser does not support the audio element.
+            </audio>
+
+            <!-- Controls for navigating audio and changing settings -->
+            <div id="controls-container">
+                <div class="controls-group">
+                    <button id="prevButton" disabled>Prošla stranica</button>
+                    <button id="nextButton" disabled>Sljedeća stranica</button>
+                </div>
+                <div class="controls-group">
+                    <button id="toggleMenuButton">Poglavlja</button>
+                    <button id="fontSizeButton">Veličina Teksta</button>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div id="uvodniTekst">
+                <h2>Welcome to Mići Princ</h2>
+                <p><strong>Please select a chapter to begin. → </strong></p>
+                <p><strong>Za početak odaberite poglavlje. → </strong></p>
+                <p>
+                    The Mići Princ "text and speech" dialectal dataset is a word-aligned version of the translation of 
+                    <i>The Little Prince</i> into various Chakavian micro-dialects. This dataset was released by the 
+                    Udruga Calculus and the Peek&Poke museum (visit <a href="http://skupnikatalog.nsk.hr/Record/nsk.NSK01001103632" target="_blank">here</a>), 
+                    both in the form of a printed book and an audio book.
+                </p>
+                <p>
+                    The printed book is a translation of Antoine de Saint-Exupéry's <i>Le Petit Prince</i>. The translation 
+                    was performed by Tea Perinčić with the assistance of the following additional translators (almost every 
+                    character in the book uses a different micro-dialect): Davina Ivašić, Annamaria Grus, Maria Luisa Ivašić, 
+                    Marin Miš, Josip Fafanđel, Glorija Fabijanić Jelović, Vlasta Juretić, Anica Pritchard, Tea Rosić, Dino Marković, 
+                    Ilinka Babić, Jadranka Ajvaz, Vlado Simičić Vava, Irena Grdinić, and Ivana Marinčić.
+                </p>
+                <p>
+                    The audio book has been read by Zoran Prodanović Prlja, Davina Ivašić, Josip Fafanđel, Melita Nilović, 
+                    Glorija Fabijanić Jelović, Albert Sirotich, Tea Rosić, Tea Perinčić, Dino Marković, Iva Močibob, Dražen Turina Šajeta, 
+                    Vlado Simčić Vava, Ilinka Babić, Melita and Svetozar Nilović, and Ivana Marinčić.
+                </p>
+                <p>
+                    Bazu podataka izradili Nikola Ljubešić, Peter Rupnik i Tea Perinčić (2024, <a href="http://hdl.handle.net/11356/1765">poveznica na bazu</a>)
+                </p> 
+                <p>
+                    Ilustrirao i izradio webstranicu: Ivan Porupski, 2024.
+                </p>    
+                <p><strong>Please select a chapter to begin. → </strong></p>
+                <p><strong>Za početak odaberite poglavlje. → </strong></p>
+            </div>
+            
+            <!-- Transcript Display -->
+            <div id="transcript" class="font-small">
+                <!-- Transcript content will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Side Menu to choose chapters -->
+        <div id="sideMenu" class="side-menu">
+            <!-- Side menu content goes here -->
+        </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="script_working_good_v2.js"></script>
+</body>
+</html>

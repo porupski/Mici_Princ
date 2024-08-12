@@ -1,0 +1,202 @@
+/* Ensure the body and html fill the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main container that holds both the main content and side menu */
+#container {
+    display: flex;
+    flex: 1;
+    transition: margin-right 0.3s ease;
+}
+
+/* Style for the main content area */
+.main-content {
+    flex: 2; /* Two-thirds of the container width */
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px); /* Adjust height as needed */
+    overflow: auto; /* Ensure content is scrollable if it overflows */
+    transition: margin-right 0.3s ease; /* Smooth transition when the side menu opens/closes */
+}
+
+/* Style for the side menu */
+.side-menu {
+    flex: 1; /* One-third of the container width */
+    background-color: #f4f4f4;
+    border-left: 1px solid #ccc;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Hide side menu when hidden */
+.side-menu.hidden {
+    transform: translateX(100%);
+}
+
+/* Header and controls positioning */
+header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for controls container */
+#controls-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+/* Style for control button groups */
+.controls-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Buttons layout within the controls */
+#controls-container button {
+    font-size: 16px;
+    margin: 0 5px; /* Margin for spacing between buttons */
+}
+
+/* Style for the home page text */
+#uvodniTekst {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#uvodniTekst h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#uvodniTekst p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#uvodniTekst a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+#uvodniTekst a:hover {
+    text-decoration: underline;
+}
+
+#uvodniTekst strong {
+    display: block;
+    margin-top: 20px;
+}
+
+/* Style for the transcript container */
+#transcript {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    white-space: pre-wrap;
+    max-width: 100%;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: flex 0.3s ease; /* Smooth transition for resizing */
+}
+
+/* Highlight the current word */
+.highlight {
+    background-color: yellow;
+    color: black;
+    display: inline;
+    position: relative;
+    z-index: 1;
+    font-weight: normal;
+}
+
+/* Optional: Additional styling for individual words */
+.word {
+    display: inline;
+}
+
+/* Style for speakers */
+.speaker {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style for chapter labels */
+.chapter-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style for menu items */
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li {
+    margin-bottom: 10px;
+}
+
+.side-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.side-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Highlight the active chapter link */
+.side-menu .menu-item.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Font size classes */
+.font-small .chapter-label {
+    font-size: 32px;
+}
+
+.font-large .chapter-label {
+    font-size: 40px;
+}
+
+.font-small .speaker {
+    font-size: 24px;
+}
+
+.font-large .speaker {
+    font-size: 32px;
+}
+
+.font-small .word {
+    font-size: 20px;
+}
+
+.font-large .word {
+    font-size: 28px;
+}
