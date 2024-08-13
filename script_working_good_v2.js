@@ -132,8 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentSegmentIndex < audioSegments.length) {
             const segmentFileName = `${audioBasePath}${audioSegments[currentSegmentIndex]}`;
             audio.src = segmentFileName;
-            audio.play().catch(error => log('Error playing audio:', error));
-
+            
+            // Delay autoplay by 0.6 seconds (600 milliseconds)
+            setTimeout(() => {
+                audio.play().catch(error => log('Error playing audio:', error));
+            }, 300);
+    
             const segmentData = transcriptData[baseFileNames[currentBaseFileIndex]][audioSegments[currentSegmentIndex]];
             if (segmentData) {
                 currentTranscriptData = segmentData.words;
