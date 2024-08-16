@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioBasePath = 'MP.mp3/';
     const transcriptFileName = 'consolidated_transcript_0.json';
 
+
     let audioSegments = [];
     let transcriptData = {};
     let currentSegmentIndex = -1;
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let baseFileNames = [];
     let currentBaseFileIndex = -1;
     let segmentStartTime = 0;
+    let isAutoPlayEnabled = true; // Default is AutoPlay ON
 
     let isFontLarge = false;
 
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         uvodniTekst.style.display = 'none'; // Hide the home page text
         currentBaseFileIndex = index;
-        audioSegments = Object.keys(transcriptData[baseFileNames[currentBaseFileIndex]]).sort();
+        audioSegments = Object.keys(transcriptData[baseFileNames[currentBaseFileIndex]]);
         currentSegmentIndex = 0;
         loadAndPlaySegment();
 
@@ -128,16 +130,23 @@ document.addEventListener('DOMContentLoaded', () => {
         updateButtons(); // Update button states
     }
 
+    document.getElementById('toggleAutoPlay').addEventListener('click', function() {
+        isAutoPlayEnabled = !isAutoPlayEnabled;
+        this.textContent = isAutoPlayEnabled ? 'AutoPlay ON' : 'AutoPlay OFF';
+    });
+    
     function loadAndPlaySegment() {
         if (currentSegmentIndex < audioSegments.length) {
             const segmentFileName = `${audioBasePath}${audioSegments[currentSegmentIndex]}`;
             audio.src = segmentFileName;
-            
-            // Delay autoplay by 0.6 seconds (600 milliseconds)
-            setTimeout(() => {
-                audio.play().catch(error => log('Error playing audio:', error));
-            }, 300);
     
+            if (isAutoPlayEnabled) {
+                // Delay autoplay by 0.6 seconds (600 milliseconds)
+                setTimeout(() => {
+                    audio.play().catch(error => log('Error playing audio:', error));
+                }, 300);
+            }
+        
             const segmentData = transcriptData[baseFileNames[currentBaseFileIndex]][audioSegments[currentSegmentIndex]];
             if (segmentData) {
                 currentTranscriptData = segmentData.words;
@@ -158,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         transcriptDiv.appendChild(labelDiv);
         transcriptDiv.appendChild(document.createElement('br'));
 
-        const sortedWords = currentTranscriptData.slice().sort((a, b) => a.start - b.start);
+        const sortedWords = currentTranscriptData;
 
         let lastSpeaker = '';
         let textDiv = null;

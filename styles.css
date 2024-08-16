@@ -135,7 +135,8 @@ header {
 
 /* Highlight the current word */
 .highlight {
-    background-color: #e7a96e;
+    /* background-color: #e7a96e; */
+    text-decoration: underline;
     color: black;
     display: inline;
     position: relative;
